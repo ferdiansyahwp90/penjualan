@@ -15,7 +15,7 @@ class CreateDetailpenjualanTable extends Migration
     {
         Schema::create('detailpenjualan', function (Blueprint $table) {
             $table->id('id_detail');
-            $table->string('id_beras', 15);
+            $table->string('id_penjualan', 15);
             $table->string('jumlah', 25);
             $table->string('hargaberas', 25);
             $table->string('diskon', 25);

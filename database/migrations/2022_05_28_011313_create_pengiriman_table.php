@@ -15,6 +15,7 @@ class CreatePengirimanTable extends Migration
     {
         Schema::create('pengiriman', function (Blueprint $table) {
             $table->id('id_pengiriman');
+            $table->string('id_pembayaran', 15);
             $table->string('kurir', 25);
             $table->string('alamat', 25);
             $table->string('totalongkir', 25);

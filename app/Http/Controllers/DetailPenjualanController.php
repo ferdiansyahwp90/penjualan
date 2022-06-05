@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DetailPenjualan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DetailPenjualanController extends Controller
 {
@@ -11,9 +13,10 @@ class DetailPenjualanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index(){
+        $detailpenjualan = DetailPenjualan::all(); // Mengambil semua isi tabel
+        $paginate = DetailPenjualan::orderBy('id_detailpenjualan', 'asc')->paginate(3);
+        return view('detailpenjualan.index', ['detailpenjualan' => $detailpenjualan,'paginate'=>$paginate]);
     }
 
     /**
@@ -23,7 +26,7 @@ class DetailPenjualanController extends Controller
      */
     public function create()
     {
-        //
+        return view('detailpenjualan.create');
     }
 
     /**
@@ -34,7 +37,18 @@ class DetailPenjualanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //melakukan validasi data
+        $request->validate([
+            'id_detail' => 'required',
+            'id_penjualan' => 'required',
+            'jumlah' => 'required',
+            'hargaberas' => 'required',
+            'diskon' => 'required',
+        ]);
+        //fungsi eloquent untuk menambah data
+        DetailPenjualan::create($request->all());//jika data berhasil ditambahkan, akan kembali ke halaman utama
+        return redirect()->route('detailpenjualan.index')
+            ->with('success', 'Detail Berhasil Ditambahkan');
     }
 
     /**
@@ -43,9 +57,10 @@ class DetailPenjualanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id_detail)
     {
-        //
+        $detailpenjualan = DetailPenjualan::where('id_detailpenjualan', $id_detail)->first();
+        return view('detailpenjualan.detail', compact('DetailPenjualan'));
     }
 
     /**
@@ -54,9 +69,10 @@ class DetailPenjualanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_detail)
     {
-        //
+        $Detail = DB::table('detail')->where('id_detail', $id_detail)->first();
+        return view('detail.edit', compact('Detail'));
     }
 
     /**
@@ -66,9 +82,28 @@ class DetailPenjualanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_detail)
     {
-        //
+        //melakukan validasi data
+        $request->validate([
+            'id_detail' => 'required',
+            'id_penjualan' => 'required',
+            'jumlah' => 'required',
+            'hargaberas' => 'required',
+            'diskon' => 'required',
+        ]);
+        //fungsi eloquent untuk mengupdate data inputan kita
+            DetailPenjualan::where('id_detail', $id_detail)
+                ->update([
+                    'id_detail' => $request->id_beras,
+                    'id_penjualan' => $request->id_beras,
+                    'jumlah' => $request->id_beras,
+                    'hargaberas' => $request->id_beras,
+                    'diskon' => $request->id_beras,
+            ]);
+        //jika data berhasil diupdate, akan kembali ke halaman utama
+            return redirect()->route('detail.index')
+                ->with('success', 'Detail Berhasil Diupdate');
     }
 
     /**
@@ -77,8 +112,10 @@ class DetailPenjualanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_detail)
     {
-        //
+        //fungsi eloquent untuk menghapus data
+        DetailPenjualan::where('id_detail', $id_detail)->delete();return redirect()->route('detail.index')
+            -> with('success', 'detail Berhasil Dihapus');       
     }
 }

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pelanggan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PelangganController extends Controller
 {
@@ -11,9 +13,10 @@ class PelangganController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index(){
+        $pelanggan = Pelanggan::all(); // Mengambil semua isi tabel
+        $paginate = Pelanggan::orderBy('id_pelanggan', 'asc')->paginate(3);
+        return view('pelanggan.index', ['pelanggan' => $pelanggan,'paginate'=>$paginate]);
     }
 
     /**
@@ -23,7 +26,7 @@ class PelangganController extends Controller
      */
     public function create()
     {
-        //
+        return view('pelanggan.create');
     }
 
     /**
@@ -34,18 +37,30 @@ class PelangganController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //melakukan validasi data
+        $request->validate([
+            'id_pelanggan' => 'required',
+            'nama_pelanggan' => 'required',
+            'no_hp' => 'required',
+            'alamat' => 'required',
+            'email' => 'required',
+        ]);
+        //fungsi eloquent untuk menambah data
+        Pelanggan::create($request->all());//jika data berhasil ditambahkan, akan kembali ke halaman utama
+        return redirect()->route('pelanggan.index')
+            ->with('success', 'Pelanggan Berhasil Ditambahkan');
     }
 
     /**
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\pelanggan
      */
-    public function show($id)
+    public function show($id_pelanggan)
     {
-        //
+        $pelanggan = Pelanggan::where('id_pelanggan', $id_pelanggan)->first();
+        return view('pelanggan.detail', compact('Pelanggan'));
     }
 
     /**
@@ -54,9 +69,10 @@ class PelangganController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_pelanggan)
     {
-        //
+        $pelanggan = DB::table('pelanggan')->where('id_pelanggan', $id_pelanggan)->first();
+        return view('pelanggan.edit', compact('Pelanggan'));
     }
 
     /**
@@ -66,9 +82,28 @@ class PelangganController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_pelanggan)
     {
-        //
+        //melakukan validasi data
+        $request->validate([
+            'id_pelanggan' => 'required',
+            'nama_pelanggan' => 'required',
+            'no_hp' => 'required',
+            'alamat' => 'required',
+            'email' => 'required',
+        ]);
+        //fungsi eloquent untuk mengupdate data inputan kita
+           Pelanggan::where('id_pelanggan', $id_pelanggan)
+                ->update([
+                    'id_pelanggan' => $request->id_pelanggan,
+                    'nama_pelanggan'=> $request->nama_pelanggan,
+                    'no_hp'=> $request->no_hp,
+                    'alamat'=> $request->alamat,
+                    'email'=> $request->email,
+            ]);
+        //jika data berhasil diupdate, akan kembali ke halaman utama
+            return redirect()->route('pelanggan.index')
+                ->with('success', 'Pelanggan Berhasil Diupdate');
     }
 
     /**
@@ -77,8 +112,10 @@ class PelangganController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_pelanggan)
     {
-        //
+        //fungsi eloquent untuk menghapus data
+       Pelanggan::where('id_pelanggan', $id_pelanggan)->delete();return redirect()->route('pelanggan.index')
+            -> with('success', 'Pelanggan Berhasil Dihapus');       
     }
 }

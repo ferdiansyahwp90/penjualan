@@ -95,11 +95,11 @@ class DetailPenjualanController extends Controller
         //fungsi eloquent untuk mengupdate data inputan kita
             DetailPenjualan::where('id_detail', $id_detail)
                 ->update([
-                    'id_detail' => $request->id_beras,
-                    'id_penjualan' => $request->id_beras,
-                    'jumlah' => $request->id_beras,
-                    'hargaberas' => $request->id_beras,
-                    'diskon' => $request->id_beras,
+                    'id_detail' => $request->id_detail,
+                    'id_penjualan' => $request->id_penjualan,
+                    'jumlah' => $request->jumlaj,
+                    'hargaberas' => $request->hargaberas,
+                    'diskon' => $request->diskon,
             ]);
         //jika data berhasil diupdate, akan kembali ke halaman utama
             return redirect()->route('detail.index')

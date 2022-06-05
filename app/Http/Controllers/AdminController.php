@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Admin;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 
-class AdminController extends Controller
+class AdminController extends Controller 
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +17,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $admin = Admin::all(); // Mengambil semua isi tabel
-        $paginate = Admin::orderBy('id_admin', 'asc')->paginate(3);
+        $admin = User::all(); // Mengambil semua isi tabel
+        $paginate = User::orderBy('id', 'asc')->paginate(3);
         return view('admin.index', ['admin' => $admin,'paginate'=>$paginate]);
     }
 
@@ -42,14 +42,14 @@ class AdminController extends Controller
     {
         //melakukan validasi data
         $request->validate([
-            'id_admin' => 'required',
+            'id' => 'required',
             'nama_admin' => 'required',
             'no_hp' => 'required',
             'alamat' => 'required',
             'email' => 'required',
         ]);
         //fungsi eloquent untuk menambah data
-        Admin::create($request->all());//jika data berhasil ditambahkan, akan kembali ke halaman utama
+        User::create($request->all());//jika data berhasil ditambahkan, akan kembali ke halaman utama
         return redirect()->route('admin.index')
             ->with('success', 'Admin Berhasil Ditambahkan');
     }
@@ -60,9 +60,9 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id_admin)
+    public function show($id)
     {
-        $admin = Admin::where('id_admin', $id_admin)->first();
+        $admin = User::where('id', $id)->first();
         return view('admin.detail', compact('Admin'));
     }
 
@@ -72,9 +72,9 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id_admin)
+    public function edit($id)
     {
-        $Admin = DB::table('admin')->where('id_admin', $id_admin)->first();
+        $Admin = DB::table('admin')->where('id', $id)->first();
         return view('admin.edit', compact('Admin'));
     }
 
@@ -85,20 +85,20 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id_admin)
+    public function update(Request $request, $id)
     {
         //melakukan validasi data
             $request->validate([
-                'id_admin' => 'required',
+                'id' => 'required',
                 'nama_admin' => 'required',
                 'no_hp' => 'required',
                 'alamat' => 'required',
                 'email' => 'required',
             ]);
         //fungsi eloquent untuk mengupdate data inputan kita
-            Admin::where('id_admin', $id_admin)
+            User::where('id', $id)
                 ->update([
-                    'id_admin' =>$request->id_admin,
+                    'id' =>$request->id,
                     'nama_admin' =>$request->nama_admin,
                     'no_hp' =>$request->no_hp,
                     'alamat' =>$request->alamat,
@@ -115,10 +115,10 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id_admin)
+    public function destroy($id)
     {
         //fungsi eloquent untuk menghapus data
-        Admin::where('id_admin', $id_admin)->delete();return redirect()->route('admin.index')
+        User::where('id', $id)->delete();return redirect()->route('admin.index')
             -> with('success', 'Admin Berhasil Dihapus');
     }
 }

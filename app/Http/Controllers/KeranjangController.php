@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Keranjang;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class KeranjangController extends Controller
 {
@@ -11,9 +14,10 @@ class KeranjangController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index(){
+        $keranjang = Keranjang::all(); // Mengambil semua isi tabel
+        $paginate = Keranjang::orderBy('id_keranjang', 'asc')->paginate(3);
+        return view('keranjang.index', ['keranjang' => $keranjang,'paginate'=>$paginate]);
     }
 
     /**
@@ -23,7 +27,7 @@ class KeranjangController extends Controller
      */
     public function create()
     {
-        //
+        return view('keranjang.create');
     }
 
     /**
@@ -34,18 +38,29 @@ class KeranjangController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //melakukan validasi data
+        $request->validate([
+            'id_keranjang' => 'required',
+            'id_beras' => 'required',
+            'totalharga' => 'required',
+            'jumlah' => 'required',
+        ]);
+        //fungsi eloquent untuk menambah data
+        Keranjang::create($request->all());//jika data berhasil ditambahkan, akan kembali ke halaman utama
+        return redirect()->route('keranjang.index')
+            ->with('success', 'Keranjang Berhasil Ditambahkan');
     }
 
     /**
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\response
      */
-    public function show($id)
+    public function show($id_keranjang)
     {
-        //
+        $keranjang = Keranjang::where('id_keranjang', $id_keranjang)->first();
+        return view('keranjang.detail', compact('Keranjang'));
     }
 
     /**
@@ -54,9 +69,10 @@ class KeranjangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_keranjang)
     {
-        //
+        $Keranjang = DB::table('keranjang')->where('id_keranjang', $id_keranjang)->first();
+        return view('keranjang.edit', compact('Keranjang'));
     }
 
     /**
@@ -66,9 +82,26 @@ class KeranjangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_keranjang)
     {
-        //
+        //melakukan validasi data
+        $request->validate([
+            'id_keranjang' => 'required',
+            'id_beras' => 'required',
+            'totalharga' => 'required',
+            'jumlah' => 'required',
+        ]);
+        //fungsi eloquent untuk mengupdate data inputan kita
+            Keranjang::where('id_keranjang', $id_keranjang)
+                ->update([
+                    'id_keranjang' => $request->id_keranjang,
+                    'id_beras' => $request->id_beras,
+                    'totalharga' => $request->totalharga,
+                    'jumlah' => $request->jumlah,
+            ]);
+        //jika data berhasil diupdate, akan kembali ke halaman utama
+            return redirect()->route('keranjang.index')
+                ->with('success', 'Keranjang Berhasil Diupdate');
     }
 
     /**
@@ -77,8 +110,10 @@ class KeranjangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_keranjang)
     {
-        //
+        //fungsi eloquent untuk menghapus data
+        Keranjang::where('id_keranjang', $id_keranjang)->delete();return redirect()->route('keranjang.index')
+            -> with('success', 'Keranjang Berhasil Dihapus');       
     }
 }

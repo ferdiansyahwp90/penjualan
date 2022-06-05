@@ -32,21 +32,26 @@ Route::get('/admin/home', function () {
     return view('admin.home.index');
 });
 
-Route::resource('admin', AdminController::class);
-Route::resource('pelanggan', PelangganController::class);
-Route::resource('keranjang', KeranjangController::class);
-Route::resource('beras', BerasController::class);
-Route::resource('pembayaran', PembayaranController::class);
-Route::resource('penjualan', PenjualanController::class);
-Route::resource('detailpenjualan', DetailPenjualanController::class);
-Route::resource('pengiriman', PengirimanController::class);
-
 Auth::routes();
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::middleware(['auth', 'admin'])->group(function(){
-    route::prefix('admin')->group(function(){
-        Route::controller((AdminHomeController))
-    })
-})
+Route::middleware(['auth', 'isAdmin'])->group(function(){
+    
+    Route::prefix('admin')->group(function(){
+        Route::resource('home', AdminController::class);
+        Route::resource('pelanggan', PelangganController::class);
+        Route::resource('keranjang', KeranjangController::class);
+        Route::resource('beras', BerasController::class);
+        Route::resource('pembayaran', PembayaranController::class);
+        Route::resource('penjualan', PenjualanController::class);
+        Route::resource('detailpenjualan', DetailPenjualanController::class);
+        Route::resource('pengiriman', PengirimanController::class);
+    });
+});
+
+Route::middleware('auth')->group(function(){
+    Route::get('/user', function(){
+        return 'ini pelanggan';
+    });
+});

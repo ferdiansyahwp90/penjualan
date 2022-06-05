@@ -10,7 +10,11 @@
           height: 300px;
           "></div>
     <!-- Background image -->
-  
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+
+        
     <div class="card mx-4 mx-md-5 shadow-12-strong" style="
           margin-top: -150px;
           background: hsla(0, 0%, 100%, 0.8);
@@ -19,7 +23,7 @@
       <div class="card-body py-3 px-md-3">
   
         <div class="row d-flex justify-content-center">
-          <div class="col-lg-4">
+          <div class="col-lg-8">
             <h2 class="fw-bold mb-5">Sign In</h2>
             <form method="POST" action="{{ route('login') }}">
                 @csrf
@@ -27,7 +31,7 @@
               <!-- Username input -->
                 <div class="form-outline mb-4">
                   <div class="form-outline">
-                    <input type="text" name="username" id="form3Example1" class="form-control @error('username') is-invalid @enderror" value="{{ old('username') }}"/>
+                    <input type="text" name="username" id="form3Example1" class="form-control text-center @error('username') is-invalid @enderror" value="{{ old('username') }}"/>
                     <label class="form-label" for="form3Example1">Username</label>
                     @error('username')
                         <span class="invalid-feedback" role="alert">
@@ -39,7 +43,7 @@
 
               <!-- Password input -->
               <div class="form-outline mb-4">
-                <input type="password" id="form3Example4" name="password" class="form-control @error('password') is-invalid @enderror" />
+                <input type="password" id="form3Example4" name="password" class="form-control text-center @error('password') is-invalid @enderror" />
                 <label class="form-label" for="form3Example4">Password</label>
                 @error('password')
                     <span class="invalid-feedback" role="alert">
@@ -59,6 +63,8 @@
         </div>
       </div>
     </div>
+</div>
+</div>
   </section>
 {{-- <div class="container">
     <div class="row justify-content-center">

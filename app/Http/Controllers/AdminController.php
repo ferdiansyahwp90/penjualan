@@ -19,7 +19,7 @@ class AdminController extends Controller
     {
         $admin = User::all(); // Mengambil semua isi tabel
         $paginate = User::orderBy('id', 'asc')->paginate(3);
-        return view('admin.index', ['admin' => $admin,'paginate'=>$paginate]);
+        return view('admin.home.index', ['admin' => $admin,'paginate'=>$paginate]);
     }
 
     /**
@@ -63,7 +63,7 @@ class AdminController extends Controller
     public function show($id)
     {
         $admin = User::where('id', $id)->first();
-        return view('admin.detail', compact('Admin'));
+        return view('admin.detail', compact('admin'));
     }
 
     /**
@@ -75,7 +75,7 @@ class AdminController extends Controller
     public function edit($id)
     {
         $Admin = DB::table('admin')->where('id', $id)->first();
-        return view('admin.edit', compact('Admin'));
+        return view('admin.edit', compact('admin'));
     }
 
     /**

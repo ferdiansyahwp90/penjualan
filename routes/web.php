@@ -28,6 +28,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/admin/home', function () {
+    return view('admin.home.index');
+});
+
 Route::resource('admin', AdminController::class);
 Route::resource('pelanggan', PelangganController::class);
 Route::resource('keranjang', KeranjangController::class);
@@ -39,4 +43,13 @@ Route::resource('pengiriman', PengirimanController::class);
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Route::middleware(['auth', 'admin'])->group(function(){
+//     route::prefix('admin')
+// })
+
+Route::group(['prefix' => 'admin',  'middleware' => 'auth'], function()
+{
+    Route::get('admin.home.index', function() {} );
+});

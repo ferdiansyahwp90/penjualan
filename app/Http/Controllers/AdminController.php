@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades;
+use Illuminate\Support\Facades\DB;
 
-class AdminController extends Controller
+class AdminController extends Controller 
 {
     /**
      * Display a listing of the resource.

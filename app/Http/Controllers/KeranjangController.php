@@ -55,7 +55,7 @@ class KeranjangController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\keranjang
+     * @return \Illuminate\Http\response
      */
     public function show($id_keranjang)
     {

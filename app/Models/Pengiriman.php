@@ -7,5 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pengiriman extends Model
 {
-    use HasFactory;
+    protected $table='pengiriman'; 
+    protected $primaryKey = 'id_pengiriman'; 
+    /**
+    * The attributes that are mass assignable.
+    *
+    * @var array
+    */
+    protected $fillable = [
+        'id_pengiriman' ,
+        'id_pembayaran' ,
+        'totaongkir',
+        'alamat' ,
+        'kurir',
+    ];
 }

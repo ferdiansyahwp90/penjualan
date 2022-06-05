@@ -55,7 +55,7 @@ class PelangganController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\pelanggan
+     * @return \Illuminate\Http\response
      */
     public function show($id_pelanggan)
     {

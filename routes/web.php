@@ -25,7 +25,7 @@ use App\Http\Controllers\DetailPenjualanController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('user.home.index');
 });
 
 Route::get('/admin/home', function () {

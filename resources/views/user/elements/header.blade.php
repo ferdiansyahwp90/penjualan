@@ -23,8 +23,7 @@
                         Cart
                         <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
                     </button>
-                    <button>
-                        
+                    <button class="btn btn-outline-dark" type="submit">
                     </button>
                 </form>
             </div>

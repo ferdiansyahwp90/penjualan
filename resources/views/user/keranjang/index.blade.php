@@ -1,18 +1,18 @@
-@extends('admin.layouts.app')
+@extends('user.layouts.app')
 
 @section('content')
 
         <!-- ============================================================== -->
         <!-- Bread crumb and right sidebar toggle -->
         <!-- ============================================================== -->
-        <div class="page-breadcrumb bg-white">
+        {{-- <div class="page-breadcrumb bg-white">
           <div class="row align-items-center">
               <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                  <h4 class="page-title">Users</h4>
+                  <h4 class="page-title">Keranjang</h4>
               </div>
           </div>
           <!-- /.col-lg-12 -->
-      </div>
+      </div> --}}
       <!-- ============================================================== -->
             <!-- Container fluid  -->
             <!-- ============================================================== -->
@@ -23,31 +23,27 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="white-box">
-                            <h3 class="box-title">Data Users</h3>
-                            <p class="text-muted">Add class <code>.table</code></p>
+                            <h3 class="box-title">Keranjang</h3>
                             <div class="table-responsive">
                                 <table class="table text-nowrap">
                                     <thead>
                                         <tr>
-                                            <th class="border-top-0">ID</th>
-                                            <th class="border-top-0">Username</th>
-                                            <th class="border-top-0">Name</th>
-                                            <th class="border-top-0">Email</th>
-                                            <th class="border-top-0">Phone Number</th>
-                                            <th class="border-top-0">Role</th>
+                                            <th class="border-top-0">ID Keranjang</th>
+                                            <th class="border-top-0">ID Beras</th>
+                                            <th class="border-top-0">Total Harga</th>
+                                            <th class="border-top-0">Jumlah</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($user as $item)    
+                                        @foreach ($keranjang as $item)    
                                         <tr>
-                                            <td>{{ $item->id }}</td>
-                                            <td>{{ $item->username }}</td>
-                                            <td>{{ $item->name }}</td>
-                                            <td>{{ $item->email }}</td>
-                                            <td>{{ $item->no_hp }}</td>
-                                            <td>{{ $item->role }}</td>
+                                            <td>{{ $item->id_keranjang }}</td>
+                                            <td>{{ $item->id_beras }}</td>
+                                            <td>{{ $item->totalharga }}</td>
+                                            <td>{{ $item->jumlah }}</td>
+
                                             <td>
-                                                <a href="/admin/user/{{ $item->id }}/edit" class="btn btn-primary">Edit</a>
+                                                <a href="/user/keranjang/{{ $item->id }}/edit" class="btn btn-primary">Edit</a>
                                             </td>
                                         </tr>
                                         @endforeach

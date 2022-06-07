@@ -23,8 +23,14 @@
                         Cart
                         <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
                     </button>
-                    <button class="btn btn-outline-dark" type="submit">
-                    </button>
+                    @auth
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-outline-dark">Logout</button>
+                        </form>
+                    @else
+                        <a href="/login" class="btn btn-outline-dark">Login</a>
+                    @endauth
                 </form>
             </div>
         </div>

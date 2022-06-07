@@ -31,6 +31,9 @@ Route::get('/', function () {
 Route::get('/admin/home', function () {
     return view('admin.home.index');
 });
+Route::get('/user/home', function () {
+    return view('user.home.index');
+});
 
 Auth::routes();
 
@@ -52,6 +55,11 @@ Route::middleware(['auth', 'isAdmin'])->group(function(){
 
 Route::middleware('auth')->group(function(){
     Route::get('/user', function(){
-        return 'ini pelanggan';
+        return view('user.home.index');
+        // return 'ini page pelanggan';
+        // Route::resource('home', AdminController::class);
+        // Route::resource('keranjang', KeranjangController::class);
+        // Route::resource('beras', BerasController::class);
+        // Route::resource('pembayaran', PembayaranController::class);
     });
 });

@@ -31,7 +31,7 @@
                       <div class="user-bg"> <img width="100%" alt="user" src="{{ asset('assets/plugins/images/large/background.jpg') }}">
                           <div class="overlay-box">
                               <div class="user-content">
-                                  <a href="javascript:void(0)"><img src="{{ asset('assets/plugins/images/users/user.jpg') }}"
+                                  <a href="javascript:void(0)"><img src="{{ asset('assets/plugins/images/users/1.jpg') }}"
                                           class="thumb-lg img-circle" alt="img"></a>
                                   <h4 class="text-white mt-2">User Name</h4>
                                   <h5 class="text-white mt-2">info@myadmin.com</h5>
@@ -73,6 +73,7 @@
                                       <button class="btn btn-success">Update Profile</button>
                                   </div>
                               </div>
+                            </div>
                           </form>
                       </div>
                   </div>

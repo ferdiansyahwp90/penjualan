@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AdminController as HomeController;
 use App\Http\Controllers\Admin\BerasController as ProdukController; 
 use App\Http\Controllers\Admin\PenjualanController as LaporanController;
@@ -39,7 +40,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::middleware(['auth', 'isAdmin'])->group(function(){ 
     Route::prefix('admin')->group(function(){
         Route::resource('home', HomeController::class);
-        Route::resource('users', UserController::class);
+        Route::resource('user', UserController::class);
         Route::resource('produk', ProdukController::class);
         Route::resource('transaksi', TransaksiController::class);
         Route::resource('laporan', LaporanController::class);

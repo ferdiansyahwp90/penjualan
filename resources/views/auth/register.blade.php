@@ -14,7 +14,7 @@
         <div class="col-md-6">
 
     <div class="card mx-4 mx-md-5 shadow-12-strong" style="
-          margin-top: -280px;
+          margin-top: -230px;
           background: hsla(0, 0%, 100%, 0.8);
           backdrop-filter: blur(30px);
           ">
@@ -63,16 +63,16 @@
                 @enderror
               </div>
               
-              <!-- Telephone input -->
+              {{-- <!-- Phone Number input -->
               <div class="form-outline mb-3">
                 <input type="text" name="no_hp" id="form3Example3" class="form-control text-center @error('no_hp') is-invalid @enderror" value="{{ old('no_hp') }}">
-                <label class="form-label" for="form3Example3">Telephone</label>
+                <label class="form-label" for="form3Example3">Phone Number</label>
                 @error('no_hp')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
-              </div>
+              </div> --}}
               
             <div class="form-outline mb-3">
                 <input id="password" type="password" class="form-control text-center @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">

@@ -14,8 +14,9 @@ class CreatePenjualanTable extends Migration
     public function up()
     {
         Schema::create('penjualan', function (Blueprint $table) {
-            $table->id('id_penjualan');
-            $table->string('id_keranjang', 15);
+            $table->id();
+            $table->unsignedBigInteger('id_keranjang');
+            $table->foreign('id_keranjang')->references('id')->on('keranjang');
             $table->string('tglpenjualan', 25);
             $table->string('totalharga', 25);
             $table->string('totalongkir', 25);

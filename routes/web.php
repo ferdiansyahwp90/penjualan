@@ -40,7 +40,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::middleware(['auth', 'isAdmin'])->group(function(){ 
     Route::prefix('admin')->group(function(){
         Route::resource('home', HomeController::class);
-        Route::resource('user', UserController::class);
+        Route::resource('users', UserController::class);
         Route::resource('produk', ProdukController::class);
         Route::resource('transaksi', TransaksiController::class);
         Route::resource('laporan', LaporanController::class);

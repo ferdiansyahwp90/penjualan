@@ -18,9 +18,8 @@ class Beras extends Model
         'id_beras' ,
         'nama_beras' ,
         'hargaberas' ,
-        'stock' ,
         'berat' ,
-        'diskon' ,
         'keterangan' ,
+        'photo' ,
     ];
 }

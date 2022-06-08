@@ -16,7 +16,7 @@ class Pembayaran extends Model
     */
     protected $fillable = [
         'id_pembayaran' ,
-        'id_penjual' ,
+        'id_penjualan' ,
         'totaltrf',
         'tanggal' ,
     ];

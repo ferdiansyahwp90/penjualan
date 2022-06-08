@@ -5,35 +5,59 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="/user">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="#!">All Products</a></li>
                             <li><hr class="dropdown-divider" /></li>
-                            <li><a class="dropdown-item" href="#!">Popular Items</a></li>
+                            <li><a class="dropdown-item" href="#">Popular Items</a></li>
                             <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
                         </ul>
                     </li>
                 </ul>
                 <form class="d-flex">
+                    <form class="d-flex0">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-dark" type="submit">Search</button>
+                    </form>
                     <button class="btn btn-outline-dark" type="submit">
                         <i class="bi-cart-fill me-1"></i>
-                        Cart
+                        <a href="/cart" class="btn-outline-dark">Cart</a>
                         <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
                     </button>
                     @auth
-                        <form action="{{ route('logout') }}" method="POST">
-                            @csrf
-                            <button type="submit" class="btn btn-outline-dark">Logout</button>
-                        </form>
+                        <a href="/keluar" class="btn btn-outline-dark">LogOut</a>
                     @else
                         <a href="/login" class="btn btn-outline-dark">Login</a>
                     @endauth
                 </form>
             </div>
+            {{-- <li>
+                <a class="profile-pic" href="/pelanggan">
+                    <img src="{{ asset('assets/plugins/images/users/user.jpg') }}" alt="user-img" width="36"
+                    class="img-circle"><span class="text-white font-medium">{{ Auth::user()->name }}</span></a>
+            </li> --}}
         </div>
+        {{-- <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
+            <!-- ============================================================== -->
+            <!-- Right side toggle and nav items -->
+            <!-- ============================================================== -->
+            <ul class="navbar-nav ms-auto d-flex align-items-center">
+                <!-- ============================================================== -->
+                <!-- User profile and search -->
+                <!-- ============================================================== -->
+                <li>
+                    <a class="profile-pic" href="/pelanggan">
+                        <img src="{{ asset('assets/plugins/images/users/user.jpg') }}" alt="user-img" width="36"
+                        class="img-circle"><span class="text-white font-medium">{{ Auth::user()->name }}</span></a>
+                </li>
+                <!-- ============================================================== -->
+                <!-- User profile and search -->
+                <!-- ============================================================== -->
+            </ul>
+        </div> --}}
     </nav>
     <!-- Header-->
     <header class="bg-dark py-5">

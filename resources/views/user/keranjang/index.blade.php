@@ -42,9 +42,6 @@
                                             <td>{{ $item->totalharga }}</td>
                                             <td>{{ $item->jumlah }}</td>
 
-                                            <td>
-                                                <a href="/user/keranjang/{{ $item->id }}/edit" class="btn btn-primary">Edit</a>
-                                            </td>
                                         </tr>
                                         @endforeach
                                     </tbody>

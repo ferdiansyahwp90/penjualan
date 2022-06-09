@@ -18,6 +18,7 @@ class CreatePembayaranTable extends Migration
             $table->string('id_penjualan', 15);
             $table->string('tanggal', 25);
             $table->string('total', 25);
+            $table->string('keterangan', 25);
             $table->timestamps();
         });
     }

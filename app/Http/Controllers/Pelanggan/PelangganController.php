@@ -16,7 +16,7 @@ class PelangganController extends Controller
     public function index(){
         $pelanggan = Pelanggan::all(); // Mengambil semua isi tabel
         $paginate = Pelanggan::orderBy('id_pelanggan', 'asc')->paginate(3);
-        return view('Pelanggan.index', ['pelanggan' => $pelanggan,'paginate'=>$paginate]);
+        return view('user.profile.index', ['pelanggan' => $pelanggan,'paginate'=>$paginate]);
     }
 
     /**

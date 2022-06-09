@@ -17,7 +17,7 @@ class PembayaranController extends Controller
     public function index(){
         $pembayaran = Pembayaran::all(); // Mengambil semua isi tabel
         $paginate = Pembayaran::orderBy('id_pembayaran', 'asc')->paginate(3);
-        return view('pembayaran.index', ['pembayaran' => $pembayaran,'paginate'=>$paginate]);
+        return view('user.pembayaran.index', ['pembayaran' => $pembayaran,'paginate'=>$paginate]);
     }
 
     /**
@@ -44,6 +44,7 @@ class PembayaranController extends Controller
             'id_penjualan' => 'required',
             'totaltrf' => 'required',
             'tanggal' => 'required',
+            'keterangan' => 'required',
         ]);
         //fungsi eloquent untuk menambah data
         Pembayaran::create($request->all());//jika data berhasil ditambahkan, akan kembali ke halaman utama
@@ -90,6 +91,7 @@ class PembayaranController extends Controller
             'id_penjualan' => 'required',
             'totaltrf' => 'required',
             'tanggal' => 'required',
+            'keterangan' => 'required',
         ]);
         //fungsi eloquent untuk mengupdate data inputan kita
            Pembayaran::where('id_pembayaran', $id_pembayaran)
@@ -98,6 +100,7 @@ class PembayaranController extends Controller
                     'id_penjualan' => $request->id_penjualan,
                     'totaltrf' => $request->totaltrf,
                     'tanggal' => $request->tanggal,
+                    'keterangan' => $request->tanggal,
             ]);
         //jika data berhasil diupdate, akan kembali ke halaman utama
             return redirect()->route('pembayaran.index')

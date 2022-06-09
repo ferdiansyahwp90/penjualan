@@ -13,6 +13,7 @@ use App\Http\Controllers\Pelanggan\KeranjangController as PelangganKeranjangCont
 use App\Http\Controllers\Pelanggan\HomeController as PelangganHomeController;
 use App\Http\Controllers\Pelanggan\PelangganController as PelangganController;
 use App\Http\Controllers\Admin\PembayaranController as PelangganPembayaranController;
+use App\Http\Controllers\Pelanggan\OrderController as PelangganOrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,7 +61,11 @@ Route::middleware(['auth', 'isAdmin'])->group(function(){
 Route::middleware('auth')->group(function(){
     Route::get('/user', [PelangganHomeController::class, 'index']);
     Route::get('/cart', [PelangganKeranjangController::class, 'index']);
+    Route::post('/cart/store', [PelangganKeranjangController::class, 'store']);
     Route::get('/pembayaran', [PelangganPembayaranController::class, 'index']);
+    Route::get('/order/{id}', [PelangganOrderController::class, 'store']);
+    Route::get('/order', [PelangganOrderController::class, 'index']);
+
 });
 
 Route::get('/keluar', function(){

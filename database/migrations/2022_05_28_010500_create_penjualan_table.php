@@ -15,11 +15,10 @@ class CreatePenjualanTable extends Migration
     {
         Schema::create('penjualan', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_keranjang');
-            $table->foreign('id_keranjang')->references('id')->on('keranjang');
-            $table->string('tglpenjualan', 25);
-            $table->string('totalharga', 25);
-            $table->string('totalongkir', 25);
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('beras_id')->constrained();
+            $table->date('date_order');
+            $table->double('total');
             $table->timestamps();
         });
     }

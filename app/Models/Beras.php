@@ -22,4 +22,8 @@ class Beras extends Model
         'keterangan' ,
         'photo' ,
     ];
+
+    public function penjualan(){
+        return $this->hasMany(Penjualan::class, 'beras_id', 'id');
+    }
 }

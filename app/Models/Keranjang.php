@@ -15,9 +15,13 @@ class Keranjang extends Model
     * @var array
     */
     protected $fillable = [
-        'id_keranjang' ,
+        'user_id' ,
         'id_beras' ,
         'totalharga',
         'jumlah' ,
     ];
+
+    public function beras(){
+        return $this->belongsTo(Beras::class, 'id_beras', 'id');
+    }
 }

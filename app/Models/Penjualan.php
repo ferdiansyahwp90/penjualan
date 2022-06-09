@@ -15,10 +15,13 @@ class Penjualan extends Model
     * @var array
     */
     protected $fillable = [
-        'id_penjualan' ,
-        'id_keranjang' ,
-        'tglpenjualan',
-        'totalongkir' ,
-        'totalharga',
+        'user_id' ,
+        'beras_id' ,
+        'date_order',
+        'total',
     ];
+
+    public function beras(){
+        return $this->belongsTo(Beras::class, 'beras_id', 'id');
+    }
 }

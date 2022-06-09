@@ -16,8 +16,8 @@ class CreateBerasTable extends Migration
         Schema::create('beras', function (Blueprint $table) {
             $table->id();
             $table->string('nama_beras', 25)-> index;
-            $table->string('hargaberas', 25);
-            $table->string('berat', 25);
+            $table->double('hargaberas');
+            $table->integer('berat');
             $table->string('photo');
             $table->string('keterangan', 50);
             $table->timestamps();

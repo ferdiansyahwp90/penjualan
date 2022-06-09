@@ -23,31 +23,31 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="white-box">
-                            <h3 class="box-title">Keranjang</h3>
+                            <h3 class="box-title">Transaksi</h3>
                             
                             <div class="table-responsive">
                                 <table class="table text-nowrap">
                                     <thead>
                                         <tr>
-                                            <th class="border-top-0">ID Keranjang</th>
+                                            <th class="border-top-0">ID Transaksi</th>
                                             <th class="border-top-0">ID Beras</th>
                                             <th class="border-top-0">Nama Beras</th>
                                             <th class="border-top-0">Total Harga</th>
                                             <th class="border-top-0">Jumlah</th>
-                                            <th class="border-top-0">Aksi</th>
+                                            {{-- <th class="border-top-0">Aksi</th> --}}
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($keranjang as $item)    
+                                        @foreach ($data as $item)    
                                         <tr>
-                                            <td>{{ $item->id_keranjang }}</td>
-                                            <td>{{ $item->id_beras }}</td>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $item->beras_id }}</td>
                                             <td>{{ $item->beras->nama_beras }}</td>
-                                            <td>{{ $item->totalharga }}</td>
-                                            <td>{{ $item->jumlah }}</td>
-                                            <td>
+                                            <td>Rp. {{ number_format($item->total) }}</td>
+                                            <td>{{ $item->date_order }}</td>
+                                            {{-- <td>
                                                 <a href="/order/{{ $item->id }}" onclick="return confirm('apakah anda yakin')">Check Out</a>
-                                            </td>
+                                            </td> --}}
 
                                         </tr>
                                         @endforeach

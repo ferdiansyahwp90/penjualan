@@ -18,7 +18,7 @@ class CreatePembayaranTable extends Migration
             $table->unsignedBigInteger('id_penjualan');
             $table->foreign('id_penjualan')->references('id')->on('penjualan');
             $table->date('tanggal');
-            $table->string('total', 25);
+            $table->double('bayar');
             $table->string('keterangan', 25);
             $table->timestamps();
         });

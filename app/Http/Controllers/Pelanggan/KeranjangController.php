@@ -16,8 +16,8 @@ class KeranjangController extends Controller
      */
     public function index(){
         // dd('ini tampilan cart');
-        $keranjang = Keranjang::all(); // Mengambil semua isi tabel
-        $paginate = Keranjang::orderBy('id_keranjang', 'asc')->paginate(3);
+        $keranjang = Keranjang::with('beras')->get(); // Mengambil semua isi tabel
+        $paginate = Keranjang::orderBy('id', 'asc')->paginate(3);
         return view('user.keranjang.index', ['keranjang' => $keranjang,'paginate'=>$paginate]);
     }
 
@@ -39,16 +39,20 @@ class KeranjangController extends Controller
      */
     public function store(Request $request)
     {
-        //melakukan validasi data
         $request->validate([
-            'id_keranjang' => 'required',
             'id_beras' => 'required',
-            'totalharga' => 'required',
+            'harga' => 'required',
             'jumlah' => 'required',
         ]);
         //fungsi eloquent untuk menambah data
-        Keranjang::create($request->all());//jika data berhasil ditambahkan, akan kembali ke halaman utama
-        return redirect()->route('keranjang.index')
+        Keranjang::create([
+            'user_id' => auth()->user()->id,
+            'id_beras' => $request->id_beras,
+            'totalharga' => $request->jumlah * $request->harga,
+            'jumlah' => $request->harga,
+        ]);
+        //jika data berhasil ditambahkan, akan kembali ke halaman utama
+        return redirect()->to('/cart')
             ->with('success', 'Keranjang Berhasil Ditambahkan');
     }
 

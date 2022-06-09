@@ -15,10 +15,11 @@ class CreateKeranjangTable extends Migration
     {
         Schema::create('keranjang', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained();
             $table->unsignedBigInteger('id_beras');
             $table->foreign('id_beras')->references('id')->on('beras');
-            $table->string('totalharga', 25);
-            $table->string('jumlah', 25);
+            $table->double('totalharga');
+            $table->integer('jumlah');
             $table->timestamps();
         });
     }

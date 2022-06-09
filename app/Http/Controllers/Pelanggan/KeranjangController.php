@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Pelanggan;
 
+use App\Http\Controllers\Controller;
 use App\Models\Keranjang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
 
 class KeranjangController extends Controller
 {
@@ -15,9 +15,10 @@ class KeranjangController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
+        // dd('ini tampilan cart');
         $keranjang = Keranjang::all(); // Mengambil semua isi tabel
         $paginate = Keranjang::orderBy('id_keranjang', 'asc')->paginate(3);
-        return view('keranjang.index', ['keranjang' => $keranjang,'paginate'=>$paginate]);
+        return view('user.keranjang.index', ['keranjang' => $keranjang,'paginate'=>$paginate]);
     }
 
     /**

@@ -25,6 +25,19 @@ use App\Http\Controllers\Admin\PembayaranController as PelangganPembayaranContro
 |
 */
 
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+// Route::get('/admin/home', function () {
+//     return view('admin.home.index');
+// });
+
+// Route::get('/user/home', function () {
+//     return view('user.home.index');
+// });
+
 Route::get('/admin/home', function () {
     return view('admin.home.index');
 });
@@ -41,7 +54,6 @@ Route::middleware(['auth', 'isAdmin'])->group(function(){
         Route::resource('users', UserController::class);
         Route::resource('produk', ProdukController::class);
         Route::resource('transaksi', TransaksiController::class);
-        Route::resource('laporan', LaporanController::class);
     });
 });
 

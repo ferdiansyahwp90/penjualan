@@ -58,7 +58,7 @@
                                   <div class="col-md-12 border-bottom p-0">
                                       <input type="email" placeholder="{{ Auth::user()->email }}"
                                           class="form-control p-0 border-0" name="example-email"
-                                          id="example-email">
+                                          id="example-email" readonly>
                                   </div>
                               </div>
                               <div class="form-group mb-4">
@@ -67,7 +67,6 @@
                                       <input type="password" value="password" class="form-control p-0 border-0">
                                   </div>
                               </div>
-                              
                               <div class="form-group mb-4">
                                   <div class="col-sm-12">
                                       <button class="btn btn-success">Update Profile</button>

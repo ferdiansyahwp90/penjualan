@@ -8,7 +8,7 @@
         <div class="page-breadcrumb bg-white">
           <div class="row align-items-center">
               <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                  <h4 class="page-title">Users</h4>
+                  <h4 class="page-title">Produk</h4>
               </div>
           </div>
           <!-- /.col-lg-12 -->
@@ -23,31 +23,41 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="white-box">
-                            <h3 class="box-title">Data Users</h3>
-                            <p class="text-muted">Add class <code>.table</code></p>
+                            <a href="/admin/produk/create" class="float-end btn btn-success">Tambah Data</a>
+                            <h3 class="box-title">Data Produk</h3>
                             <div class="table-responsive">
                                 <table class="table text-nowrap">
                                     <thead>
                                         <tr>
                                             <th class="border-top-0">ID</th>
-                                            <th class="border-top-0">Username</th>
-                                            <th class="border-top-0">Name</th>
-                                            <th class="border-top-0">Email</th>
-                                            <th class="border-top-0">Phone Number</th>
-                                            <th class="border-top-0">Role</th>
+                                            <th class="border-top-0">Nama Beras</th>
+                                            <th class="border-top-0">Harga</th>
+                                            <th class="border-top-0">Berat</th>
+                                            <th class="border-top-0">Foto</th>
+                                            <th class="border-top-0">Keterangan</th>
+                                            <th class="border-top-0">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($user as $item)    
+                                        @foreach ($beras as $item)    
                                         <tr>
                                             <td>{{ $item->id }}</td>
-                                            <td>{{ $item->username }}</td>
-                                            <td>{{ $item->name }}</td>
-                                            <td>{{ $item->email }}</td>
-                                            <td>{{ $item->no_hp }}</td>
-                                            <td>{{ $item->role }}</td>
+                                            <td>{{ $item->nama_beras }}</td>
+                                            <td>{{ $item->hargaberas }}</td>
+                                            <td>{{ $item->berat }}</td>
                                             <td>
-                                                <a href="/admin/users/{{ $item->id }}/edit" class="btn btn-primary">Edit</a>
+                                                <img src="{{ asset('storage/'.$item->photo) }}" class="w-50" alt="">
+                                            </td>
+                                            <td>{{ $item->keterangan }}</td>
+                                            <td>
+                                                <form action="/admin/produk/{{ $item->id }}" method="post">
+                                                    
+                                                    <a href="/admin/produk/{{ $item->id }}/edit" class="btn btn-primary">Edit</a>
+                                                    
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-primary">Hapus</button>
+                                                </form>
                                             </td>
                                         </tr>
                                         @endforeach

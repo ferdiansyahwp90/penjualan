@@ -33,7 +33,7 @@
                                             <th class="border-top-0">ID Beras</th>
                                             <th class="border-top-0">Nama Beras</th>
                                             <th class="border-top-0">Total Harga</th>
-                                            <th class="border-top-0">Jumlah</th>
+                                            <th class="border-top-0">Tanggal</th>
                                             {{-- <th class="border-top-0">Aksi</th> --}}
                                         </tr>
                                     </thead>

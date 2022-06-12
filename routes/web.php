@@ -6,9 +6,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AdminController as HomeController;
-use App\Http\Controllers\Admin\BerasController as ProdukController; 
-use App\Http\Controllers\Admin\PenjualanController as LaporanController;
-use App\Http\Controllers\Admin\PembayaranController as TransaksiController;
+use App\Http\Controllers\Admin\BerasController as ProdukController;
+use App\Http\Controllers\Admin\PembayaranController;
+use App\Http\Controllers\Admin\PenjualanController;
 use App\Http\Controllers\Pelanggan\KeranjangController as PelangganKeranjangController;
 use App\Http\Controllers\Pelanggan\HomeController as PelangganHomeController;
 use App\Http\Controllers\Pelanggan\PelangganController as PelangganController;
@@ -52,9 +52,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::middleware(['auth', 'isAdmin'])->group(function(){ 
     Route::prefix('admin')->group(function(){
         Route::resource('home', HomeController::class);
+        Route::put('/update', [HomeController::class, 'update_profile']);
         Route::resource('users', UserController::class);
         Route::resource('produk', ProdukController::class);
-        Route::resource('transaksi', TransaksiController::class);
+        Route::resource('penjualan', PenjualanController::class);
+        Route::resource('pembayaran', PembayaranController::class);
     });
 });
 

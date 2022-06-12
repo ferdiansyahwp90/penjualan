@@ -7,7 +7,7 @@
       <div class="col mb-5">
         <div class="card h-100">
           <!-- Product image-->
-          <img class="card-img-top" src="{{ asset('ui/img/kp1.jfif') }}" alt="..." />
+          <img class="card-img-top" src="{{ asset('storage/'.$item->photo) }}" alt="..." />
           <!-- Product details-->
           <div class="card-body p-4">
             <div class="text-center">
@@ -26,13 +26,13 @@
             </div>
           </div>
           <!-- Product actions-->
-          <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+          <div class="text-center card-footer p-4 pt-0 border-top-0 bg-transparent">
             <form action="/cart/store" method="post" onsubmit="return confirm('Apakah anda yakin akan menambahkan keranjang?')">
               @csrf
               <input type="hidden" name="id_beras" value="{{ $item->id }}">
               <input type="hidden" name="harga" value="{{ $item->hargaberas }}">
               <input type="hidden" name="jumlah" value="{{ 1 }}">
-              <button type="submit" class="btn btn-outline-dark mt-auto">Add to Cart</button>
+              <button type="submit" class=" btn btn-outline-dark mt-auto">Add to Cart</button>
             </form>
           </div>
         </div>

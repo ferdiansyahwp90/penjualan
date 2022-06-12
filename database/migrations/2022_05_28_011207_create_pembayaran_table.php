@@ -19,7 +19,7 @@ class CreatePembayaranTable extends Migration
             $table->foreign('id_penjualan')->references('id')->on('penjualan');
             $table->date('tanggal');
             $table->double('bayar');
-            $table->string('keterangan', 25);
+            $table->string('keterangan', 25)->nullable();
             $table->timestamps();
         });
     }

@@ -45,7 +45,6 @@ class UserController extends Controller
             'id' => 'required',
             'nama_admin' => 'required',
             'no_hp' => 'required',
-            'alamat' => 'required',
             'email' => 'required',
         ]);
         //fungsi eloquent untuk menambah data
@@ -89,24 +88,22 @@ class UserController extends Controller
     {
         //melakukan validasi data
             $request->validate([
-                'id' => 'required',
-                'nama' => 'required',
+                'username' => 'required',
+                'name' => 'required',
                 'no_hp' => 'required',
-                'alamat' => 'required',
                 'email' => 'required',
             ]);
         //fungsi eloquent untuk mengupdate data inputan kita
             User::where('id', $id)
-                ->update([
-                    'id' =>$request->id,
-                    'nama' =>$request->nama,
+            ->update([
+                    'username' =>$request->username,
+                    'name' =>$request->name,
                     'no_hp' =>$request->no_hp,
-                    'alamat' =>$request->alamat,
                     'email' =>$request->email,
             ]);
         //jika data berhasil diupdate, akan kembali ke halaman utama
-            return redirect()->route('admin.index')
-                ->with('success', 'Admin Berhasil Diupdate');
+            return redirect()->to('/admin/users')
+                ->with('success', 'User Berhasil Diupdate');
     }
 
     /**

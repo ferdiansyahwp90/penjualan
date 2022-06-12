@@ -16,8 +16,8 @@ class PenjualanController extends Controller
      */
     public function index(){
         $penjualan = Penjualan::all(); // Mengambil semua isi tabel
-        $paginate = Penjualan::orderBy('id_penjualan', 'asc')->paginate(3);
-        return view('penjualan.index', ['penjualan' => $penjualan,'paginate'=>$paginate]);
+        $paginate = Penjualan::orderBy('id', 'asc')->paginate(3);
+        return view('admin.penjualan.index', ['penjualan' => $penjualan,'paginate'=>$paginate]);
     }
 
     /**
@@ -60,8 +60,8 @@ class PenjualanController extends Controller
      */
     public function show($id_penjualan)
     {
-        $penjualan = Penjualan::where('id_penjualan', $id_penjualan)->first();
-        return view('penjualan.detail', compact('Penjualan'));
+        $penjualan = Penjualan::where('id', $id_penjualan)->first();
+        return view('penjualan.detail', compact('penjualan'));
     }
 
     /**
@@ -72,8 +72,8 @@ class PenjualanController extends Controller
      */
     public function edit($id_penjualan)
     {
-        $penjualan = DB::table('penjualan')->where('id_penjualan', $id_penjualan)->first();
-        return view('penjualan.edit', compact('Penjualan'));
+        $penjualan = DB::table('penjualan')->where('id', $id_penjualan)->first();
+        return view('admin.penjualan.edit', compact('penjualan'));
     }
 
     /**
@@ -87,14 +87,13 @@ class PenjualanController extends Controller
     {
         //melakukan validasi data
         $request->validate([
-            'id_penjualan' => 'required',
             'id_keranjang' => 'required',
             'tglpenjualan' => 'required',
             'totalongkir' => 'required',
             'totalharga' => 'required',
         ]);
         //fungsi eloquent untuk mengupdate data inputan kita
-           Penjualan::where('id_penjualan', $id_penjualan)
+           Penjualan::where('id', $id_penjualan)
                 ->update([
                     'id_penjualan' => $request->id_penjualan,
                     'id_keranjang' => $request->id_keranjang,
@@ -103,7 +102,7 @@ class PenjualanController extends Controller
                     'totalharga' => $request->totalharga,
             ]);
         //jika data berhasil diupdate, akan kembali ke halaman utama
-            return redirect()->route('penjualan.index')
+            return redirect()->route('admin.penjualan.index')
                 ->with('success', 'Pengjualan Berhasil Diupdate');
     }
 

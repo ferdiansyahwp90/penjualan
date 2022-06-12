@@ -1,18 +1,18 @@
-@extends('user.layouts.app')
+@extends('admin.layouts.app')
 
 @section('content')
 
         <!-- ============================================================== -->
         <!-- Bread crumb and right sidebar toggle -->
         <!-- ============================================================== -->
-        {{-- <div class="page-breadcrumb bg-white">
+        <div class="page-breadcrumb bg-white">
           <div class="row align-items-center">
               <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                  <h4 class="page-title">Keranjang</h4>
+                  <h4 class="page-title">Pembayaran</h4>
               </div>
           </div>
           <!-- /.col-lg-12 -->
-      </div> --}}
+      </div>
       <!-- ============================================================== -->
             <!-- Container fluid  -->
             <!-- ============================================================== -->
@@ -23,36 +23,31 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="white-box">
-                            <h3 class="box-title">Keranjang</h3>
-                            
+                            <h3 class="box-title">Data Pembayaran</h3>
                             <div class="table-responsive">
                                 <table class="table text-nowrap">
                                     <thead>
                                         <tr>
-                                            <th class="border-top-0">ID Beras</th>
-                                            <th class="border-top-0">Nama Beras</th>
-                                            <th class="border-top-0">Total Harga</th>
-                                            <th class="border-top-0">Jumlah</th>
-                                            <th class="border-top-0">Aksi</th>
+                                            <th class="border-top-0">ID</th>
+                                            <th class="border-top-0">ID Penjualan</th>
+                                            <th class="border-top-0">Tanggal</th>
+                                            <th class="border-top-0">Bayar</th>
+                                            <th class="border-top-0">Keterangan</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($keranjang as $item)    
+                                        @foreach ($pembayaran as $item)    
                                         <tr>
-                                            <td>{{ $item->id_beras }}</td>
-                                            <td>{{ $item->beras->nama_beras }}</td>
-                                            <td>{{ $item->totalharga }}</td>
-                                            <td>{{ $item->jumlah }}</td>
-                                            <td>
-                                                <a href="/order/{{ $item->id }}" onclick="return confirm('apakah anda yakin')">Check Out</a>
-                                            </td>
-
+                                            <td>{{ $item->id }}</td>
+                                            <td>{{ $item->id_penjualan }}</td>
+                                            <td>{{ $item->tanggal }}</td>
+                                            <td>{{ $item->bayar }}</td>
+                                            <td>{{ $item->Keterangan }}</td>
                                         </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
                             </div>
-
                         </div>
                     </div>
                 </div>

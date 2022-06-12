@@ -15,7 +15,6 @@ class Beras extends Model
     * @var array
     */
     protected $fillable = [
-        'id_beras' ,
         'nama_beras' ,
         'hargaberas' ,
         'berat' ,

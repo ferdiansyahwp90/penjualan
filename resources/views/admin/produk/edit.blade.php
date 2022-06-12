@@ -8,7 +8,7 @@
         <div class="page-breadcrumb bg-white">
           <div class="row align-items-center">
               <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                  <h4 class="page-title">Users</h4>
+                  <h4 class="page-title">Edit Produk</h4>
               </div>
           </div>
           <!-- /.col-lg-12 -->
@@ -26,65 +26,49 @@
                     <div class="col-lg-12 col-xlg-9">
                     <div class="card">
                         <div class="card-body">
-                        <form class="form-horizontal form-material mx-2" action="/admin/user/{{ $user->id }}" method="POST">
-                            @csrf
-                            @method('PUT')
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                @endif
 
-                            <div class="form-group">
-                            <label class="col-md-12">Email</label>
-                            <div class="col-md-12">
-                                <input type="email" placeholder="Email"
-                                class="form-control form-control-line @error('email') is-invalid @enderror" name="email" value="{{ $user->email }}" readonly>
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            </div>
+                                <form method="post" action="/admin/produk/{{ $beras->id }}" enctype="multipart/form-data" id="myForm">
 
-                            <div class="form-group">
-                            <label class="col-md-12">Name</label>
-                            <div class="col-md-12">
-                                <input type="text" placeholder="Name"
-                                class="form-control form-control-line @error('name') is-invalid @enderror" name="name" value="{{ $user->name }}">
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            </div>
+                                    @csrf
+                                    @method('PUT')
 
-                            <div class="form-group">
-                            <label class="col-md-12">Number Phone</label>
-                            <div class="col-md-12">
-                                <input type="text" placeholder="no_hp"
-                                class="form-control form-control-line @error('no_hp') is-invalid @enderror" name="no_hp" value="{{ $user->no_hp }}">
-                                @error('no_hp')
-                                    <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            </div>
+                                    <div class="form-group">
+                                        <label for="nama_beras">Nama Beras</label>
+                                        <input type="text" name="nama_beras" class="form-control" id="nama_beras" value="{{ $beras->nama_beras }}" aria-describedby="nama_beras" >
+                                    </div>
 
-                            <div class="form-group">
-                            <label class="col-md-12">Role</label>
-                            <div class="col-md-12">
-                                <select name="role" id="role" class="form-control form-control-line @error('role') is-invalid @enderror">
-                                <option value="{{ 'admin' }}" {{ ($user->role == 'admin') ? 'selected' : '' }}>{{ 'Admin' }}</option>
-                                <option value="{{ 'customer' }}" {{ ($user->role == 'pengguna') ? 'selected' : '' }}>{{ 'Pengguna' }}</option>
-                                </select>
-                            </div>
-                            </div>
-                            
-                            <div class="form-group">
-                            <div class="col-sm-12">
-                                <button type="submit" class="btn btn-success text-white">Submit</button>
-                            </div>
-                            </div>
-                        </form>
+                                    <div class="form-group">
+                                        <label for="hargaberas">Harga</label>
+                                        <input type="text" name="hargaberas" class="form-control" id="hargaberas" value="{{ $beras->hargaberas }}" aria-describedby="hargaberas" >
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="berat">Berat</label>
+                                        <input type="berat" name="berat" class="form-control" id="berat" value="{{ $beras->berat }}" aria-describedby="berat" >
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="photo">Foto</label>
+                                        <input type="file" name="photo" class="form-control" id="photo" value="{{ $beras->photo }}" aria-describedby="photo" >
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="keterangan">Keterangan</label>
+                                        <textarea type="text" name="keterangan" class="form-control" id="keterangan" aria-describedby="keterangan" >{{ $beras->keterangan }}</textarea>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </form>
                         </div>
                     </div>
                     </div>

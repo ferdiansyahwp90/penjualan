@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Pembayaran;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
@@ -16,8 +17,8 @@ class PembayaranController extends Controller
      */
     public function index(){
         $pembayaran = Pembayaran::all(); // Mengambil semua isi tabel
-        $paginate = Pembayaran::orderBy('id_pembayaran', 'asc')->paginate(3);
-        return view('user.pembayaran.index', ['pembayaran' => $pembayaran,'paginate'=>$paginate]);
+        $paginate = Pembayaran::orderBy('id', 'asc')->paginate(3);
+        return view('admin.pembayaran.index', ['pembayaran' => $pembayaran,'paginate'=>$paginate]);
     }
 
     /**
@@ -40,15 +41,22 @@ class PembayaranController extends Controller
     {
         //melakukan validasi data
         $request->validate([
-            'id_pembayaran' => 'required',
             'id_penjualan' => 'required',
-            'totaltrf' => 'required',
-            'tanggal' => 'required',
-            'keterangan' => 'required',
+            // 'tanggal' => 'required',
+            'bayar' => 'required',
+            // 'keterangan' => 'required',
         ]);
+        
         //fungsi eloquent untuk menambah data
-        Pembayaran::create($request->all());//jika data berhasil ditambahkan, akan kembali ke halaman utama
-        return redirect()->route('pembayaran.index')
+        Pembayaran::create([
+            'id_penjualan' => $request->id_penjualan,
+            'tanggal' => Carbon::now(),
+            'bayar' => $request->bayar,
+            'keterangan' => $request->keterangan,
+        ]);
+        
+        //jika data berhasil ditambahkan, akan kembali ke halaman utama
+        return redirect()->to('/admin/pembayaran')
             ->with('success', 'Pembayaran Berhasil Ditambahkan');
     }
 

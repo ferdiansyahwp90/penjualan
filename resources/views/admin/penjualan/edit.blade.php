@@ -8,7 +8,7 @@
         <div class="page-breadcrumb bg-white">
           <div class="row align-items-center">
               <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                  <h4 class="page-title">Users</h4>
+                  <h4 class="page-title">Konfirmasi Pembayaran</h4>
               </div>
           </div>
           <!-- /.col-lg-12 -->
@@ -37,41 +37,26 @@
                                 </div>
                                 @endif
 
-                                <form method="post" action="/admin/users/{{ $user->id }}" enctype="multipart/form-data" id="myForm">
+                                <form method="post" action="/admin/pembayaran" enctype="multipart/form-data" id="myForm">
 
                                     @csrf
-                                    @method('PUT')
 
                                     <div class="form-group">
-                                        <label for="Nim">Username</label>
-                                        <input type="text" name="username" class="form-control" id="username" value="{{ $user->username }}" aria-describedby="username" >
+                                        <label for="id">ID Penjualan</label>
+                                        <input type="text" name="id_penjualan" class="form-control" id="id" value="{{ $penjualan->id }}" aria-describedby="id" readonly>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="Nim">Name</label>
-                                        <input type="text" name="name" class="form-control" id="name" value="{{ $user->name }}" aria-describedby="name" >
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="Email">Email</label>
-                                        <input type="email" name="email" class="form-control" id="email" value="{{ $user->email }}" aria-describedby="email" >
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="Nama">Nomor HP</label>
-                                        <input type="text" name="no_hp" class="form-control" id="no_hp" value="{{ $user->no_hp }}" aria-describedby="no_hp" >
+                                        <label for="bayar">Bayar</label>
+                                        <input type="number" name="bayar" class="form-control" id="bayar" value="{{ $penjualan->total }}" aria-describedby="bayar" readonly>
                                     </div>
                                     
                                     <div class="form-group">
-                                        <label for="Nama">Role</label>
-                                        <select class="form-control" type="Kelas" name="Kelas">
-                                            <option value="">admin</option>
-                                            <option value="">pelanggan</option>
-                                        </select>
+                                        <label for="keterangan">Keterangan</label>
+                                        <textarea name="keterangan" class="form-control" id="keterangan" aria-describedby="keterangan" ></textarea>
                                     </div>
-                                    
 
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">Sudah Terbayar</button>
                                 </form>
                         </div>
                     </div>

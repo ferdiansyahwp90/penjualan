@@ -21,21 +21,21 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="#" aria-expanded="false">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/produk" aria-expanded="false">
                         <i class="fa fa-table" aria-hidden="true"></i>
                         <span class="hide-menu">Produk</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="#" aria-expanded="false">
-                        <i class="fa fa-handshake" aria-hidden="true"></i>
-                        <span class="hide-menu">Transaksi</span>
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/penjualan" aria-expanded="false">
+                        <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+                        <span class="hide-menu">Penjualan</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="#" aria-expanded="false">
-                        <i class="fa fa-clipboard" aria-hidden="true"></i>
-                        <span class="hide-menu">Laporan</span>
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/pembayaran" aria-expanded="false">
+                        <i class="fa fa-handshake" aria-hidden="true"></i>
+                        <span class="hide-menu">Pembayaran</span>
                     </a>
                 </li>
                 <li class="sidebar-item">

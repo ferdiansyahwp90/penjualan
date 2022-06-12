@@ -15,10 +15,10 @@ class Pembayaran extends Model
     * @var array
     */
     protected $fillable = [
-        'id_pembayaran' ,
         'id_penjualan' ,
-        'totaltrf',
+        'bayar',
         'tanggal' ,
+        'keterangan' ,
     ];
 
     public function penjualan(){

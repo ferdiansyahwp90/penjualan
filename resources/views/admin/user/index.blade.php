@@ -24,7 +24,6 @@
                     <div class="col-sm-12">
                         <div class="white-box">
                             <h3 class="box-title">Data Users</h3>
-                            <p class="text-muted">Add class <code>.table</code></p>
                             <div class="table-responsive">
                                 <table class="table text-nowrap">
                                     <thead>
@@ -35,6 +34,7 @@
                                             <th class="border-top-0">Email</th>
                                             <th class="border-top-0">Phone Number</th>
                                             <th class="border-top-0">Role</th>
+                                            <th class="border-top-0">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>

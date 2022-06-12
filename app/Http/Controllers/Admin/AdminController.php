@@ -89,19 +89,15 @@ class AdminController extends Controller
     {
         //melakukan validasi data
             $request->validate([
-                'id' => 'required',
                 'nama_admin' => 'required',
                 'no_hp' => 'required',
-                'alamat' => 'required',
                 'email' => 'required',
             ]);
         //fungsi eloquent untuk mengupdate data inputan kita
             User::where('id', $id)
                 ->update([
-                    'id' =>$request->id,
                     'nama_admin' =>$request->nama_admin,
                     'no_hp' =>$request->no_hp,
-                    'alamat' =>$request->alamat,
                     'email' =>$request->email,
             ]);
         //jika data berhasil diupdate, akan kembali ke halaman utama
@@ -118,7 +114,32 @@ class AdminController extends Controller
     public function destroy($id)
     {
         //fungsi eloquent untuk menghapus data
-        User::where('id', $id)->delete();return redirect()->route('admin.index')
-            -> with('success', 'Admin Berhasil Dihapus');
+        User::where('id', $id)->delete();
+        return redirect()->route('admin.index')
+        -> with('success', 'Admin Berhasil Dihapus');
+    }
+
+    public function update_profile(Request $request, $id)
+    {
+        //melakukan validasi data
+            $request->validate([
+                'username' => 'required',
+                'name' => 'required',
+                // 'email' => 'required',
+                'no_hp' => 'required',
+                'password' => 'required',
+            ]);
+        //fungsi eloquent untuk mengupdate data inputan kita
+            User::where('id', $id)
+                ->update([
+                    'username' =>$request->username,
+                    'name' =>$request->name,
+                    'email' =>$request->email,
+                    'no_hp' =>$request->no_hp,
+                    'password' =>$request->password,
+            ]);
+        //jika data berhasil diupdate, akan kembali ke halaman utama
+            return redirect()->to('/admin/home')
+                ->with('success', 'Profile Berhasil Diupdate');
     }
 }

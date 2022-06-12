@@ -17,7 +17,7 @@ class BerasController extends Controller
     public function index()
     {
         $beras = Beras::all(); // Mengambil semua isi tabel
-        $paginate = Beras::orderBy('id_beras', 'asc')->paginate(3);
+        $paginate = Beras::orderBy('id', 'asc')->paginate(3);
         return view('admin.produk.index', ['beras' => $beras,'paginate'=>$paginate]);
     }
 
@@ -47,9 +47,22 @@ class BerasController extends Controller
             'keterangan' => 'required',
             'photo' => 'required',
         ]);
+
+        if($request->file('photo')){
+            $image_name = $request->file('photo')->store('beras', 'public');
+        }
+
         //fungsi eloquent untuk menambah data
-        Beras::create($request->all());//jika data berhasil ditambahkan, akan kembali ke halaman utama
-        return redirect()->route('admin.produk.index')
+        Beras::create([
+            'nama_beras' => $request->nama_beras,
+            'hargaberas' => $request->hargaberas,
+            'berat' => $request->berat,
+            'keterangan' => $request->keterangan,
+            'photo' => $image_name,
+        ]);
+        
+        //jika data berhasil ditambahkan, akan kembali ke halaman utama
+        return redirect()->to('/admin/produk')
             ->with('success', 'Produk Berhasil Ditambahkan');
     }
 
@@ -73,8 +86,8 @@ class BerasController extends Controller
      */
     public function edit($id_beras)
     {
-        $Beras = DB::table('beras')->where('id_beras', $id_beras)->first();
-        return view('admin.produk.edit', compact('Beras'));
+        $beras = DB::table('beras')->where('id', $id_beras)->first();
+        return view('admin.produk.edit', compact('beras'));
     }
 
     /**
@@ -92,19 +105,26 @@ class BerasController extends Controller
             'hargaberas' => 'required',
             'berat' => 'required',
             'keterangan' => 'required',
-            'photo' => 'required',
+            // 'photo' => 'required',
         ]);
+        $image_name = null;
+        if($request->file('photo')){
+            $image_name = $request->file('photo')->store('beras', 'public');
+        }
+        
+        $beras = Beras::where('id', $id_beras)->first();
         //fungsi eloquent untuk mengupdate data inputan kita
-            Beras::where('id_beras', $id_beras)
+            Beras::where('id', $id_beras)
                 ->update([
                     'nama_beras' => $request->nama_beras,
                     'hargaberas' => $request->hargaberas,
                     'berat' => $request->berat,
                     'keterangan' => $request->keterangan,
-                    'photo' => $request->photo,
+                    'photo' => ($image_name == null) ? $beras->photo : $image_name,
             ]);
+
         //jika data berhasil diupdate, akan kembali ke halaman utama
-            return redirect()->route('admin.produk.index')
+            return redirect()->to('/admin/produk')
                 ->with('success', 'Produk Berhasil Diupdate');
     }
 
@@ -117,7 +137,8 @@ class BerasController extends Controller
     public function destroy($id_beras)
     {
         //fungsi eloquent untuk menghapus data
-        Beras::where('id_beras', $id_beras)->delete();return redirect()->route('admin.produk.index')
+        Beras::where('id', $id_beras)->delete();
+        return redirect()->to('/admin/produk')
             -> with('success', 'Produk Berhasil Dihapus');
     }
 }

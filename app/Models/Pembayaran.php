@@ -20,4 +20,8 @@ class Pembayaran extends Model
         'tanggal' ,
         'keterangan' ,
     ];
+
+    public function penjualan(){
+        return $this->hasOne(penjualan::class, 'id_penjualan', 'id');
+    }
 }

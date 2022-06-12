@@ -45,7 +45,7 @@ class PembayaranController extends Controller
             'id_penjualan' => 'required',
             // 'tanggal' => 'required',
             'bayar' => 'required',
-            // 'keterangan' => 'required',
+            'keterangan' => 'required',
         ]);
         
         //fungsi eloquent untuk menambah data

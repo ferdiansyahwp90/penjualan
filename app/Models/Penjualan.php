@@ -24,4 +24,10 @@ class Penjualan extends Model
     public function beras(){
         return $this->belongsTo(Beras::class, 'beras_id', 'id');
     }
+    public function users(){
+        return $this->belongsTo(user::class, 'user_id', 'id');
+    }
+    public function pembayaran(){
+        return $this->hasOne(pembayaran::class, 'id_pembayaran', 'id');
+    }
 }

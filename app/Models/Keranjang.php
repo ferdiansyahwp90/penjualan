@@ -24,4 +24,7 @@ class Keranjang extends Model
     public function beras(){
         return $this->belongsTo(Beras::class, 'id_beras', 'id');
     }
+    public function users(){
+        return $this->belongsTo(Users::class, 'id_users', 'id');
+    }
 }

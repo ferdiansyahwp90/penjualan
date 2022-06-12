@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pelanggan;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -14,8 +15,8 @@ class PelangganController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        $pelanggan = Pelanggan::all(); // Mengambil semua isi tabel
-        $paginate = Pelanggan::orderBy('id_pelanggan', 'asc')->paginate(3);
+        $pelanggan = User::all(); // Mengambil semua isi tabel
+        $paginate = User::orderBy('id_pelanggan', 'asc')->paginate(3);
         return view('user.profile.index', ['pelanggan' => $pelanggan,'paginate'=>$paginate]);
     }
 
@@ -46,7 +47,7 @@ class PelangganController extends Controller
             'email' => 'required',
         ]);
         //fungsi eloquent untuk menambah data
-        Pelanggan::create($request->all());//jika data berhasil ditambahkan, akan kembali ke halaman utama
+        User::create($request->all());//jika data berhasil ditambahkan, akan kembali ke halaman utama
         return redirect()->route('pelanggan.index')
             ->with('success', 'Pelanggan Berhasil Ditambahkan');
     }
@@ -59,7 +60,7 @@ class PelangganController extends Controller
      */
     public function show($id_pelanggan)
     {
-        $pelanggan = Pelanggan::where('id_pelanggan', $id_pelanggan)->first();
+        $pelanggan = User::where('id_pelanggan', $id_pelanggan)->first();
         return view('pelanggan.detail', compact('Pelanggan'));
     }
 
@@ -93,7 +94,7 @@ class PelangganController extends Controller
             'email' => 'required',
         ]);
         //fungsi eloquent untuk mengupdate data inputan kita
-           Pelanggan::where('id_pelanggan', $id_pelanggan)
+           User::where('id_pelanggan', $id_pelanggan)
                 ->update([
                     'id_pelanggan' => $request->id_pelanggan,
                     'nama_pelanggan'=> $request->nama_pelanggan,
@@ -115,7 +116,7 @@ class PelangganController extends Controller
     public function destroy($id_pelanggan)
     {
         //fungsi eloquent untuk menghapus data
-       Pelanggan::where('id_pelanggan', $id_pelanggan)->delete();return redirect()->route('pelanggan.index')
+        User::where('id_pelanggan', $id_pelanggan)->delete();return redirect()->route('pelanggan.index')
             -> with('success', 'Pelanggan Berhasil Dihapus');       
     }
 }

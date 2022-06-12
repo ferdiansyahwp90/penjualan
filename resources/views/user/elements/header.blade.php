@@ -8,13 +8,13 @@
                     <li class="nav-item"><a class="nav-link active" aria-current="page" href="/user">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="/order">Transaksi</a></li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
+                        {{-- <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="#!">All Products</a></li>
                             <li><hr class="dropdown-divider" /></li>
                             <li><a class="dropdown-item" href="#">Popular Items</a></li>
                             <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
-                        </ul>
+                        </ul> --}}
                     </li>
                 </ul>
                 <form class="d-flex">
@@ -25,7 +25,7 @@
                     <button class="btn btn-outline-dark" type="submit">
                         <i class="bi-cart-fill me-1"></i>
                         <a href="/cart" class="btn-outline-dark">Cart</a>
-                        <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                        <span class="badge bg-dark text-white ms-1 rounded-pill"></span>
                     </button>
                     @auth
                         <a href="/keluar" class="btn btn-outline-dark">LogOut</a>

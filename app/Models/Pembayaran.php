@@ -20,4 +20,8 @@ class Pembayaran extends Model
         'totaltrf',
         'tanggal' ,
     ];
+
+    public function penjualan(){
+        return $this->hasOne(penjualan::class, 'id_penjualan', 'id');
+    }
 }

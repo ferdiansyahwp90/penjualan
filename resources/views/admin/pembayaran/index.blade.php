@@ -23,6 +23,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="white-box">
+                            <a href="/admin/laporan" class="float-end btn btn-success">Cetak Laporan</a>
                             <h3 class="box-title">Data Pembayaran</h3>
                             <div class="table-responsive">
                                 <table class="table text-nowrap">
@@ -42,7 +43,7 @@
                                             <td>{{ $item->id_penjualan }}</td>
                                             <td>{{ $item->tanggal }}</td>
                                             <td>{{ $item->bayar }}</td>
-                                            <td>{{ $item->Keterangan }}</td>
+                                            <td>{{ $item->keterangan }}</td>
                                         </tr>
                                         @endforeach
                                     </tbody>

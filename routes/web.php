@@ -57,6 +57,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function(){
         Route::resource('produk', ProdukController::class);
         Route::resource('penjualan', PenjualanController::class);
         Route::resource('pembayaran', PembayaranController::class);
+        Route::get('/laporan', [PembayaranController::class, 'cetak_laporan'])->name('cetak_laporan');
     });
 });
 

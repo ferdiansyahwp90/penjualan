@@ -25,4 +25,7 @@ class Beras extends Model
     public function penjualan(){
         return $this->hasMany(Penjualan::class, 'beras_id', 'id');
     }
+    public function keranjang(){
+        return $this->hasMany(keranjang::class, 'id_keranjang', 'id');
+    }
 }

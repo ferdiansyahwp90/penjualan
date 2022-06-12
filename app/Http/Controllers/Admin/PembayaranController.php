@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Pembayaran;
 use Carbon\Carbon;
+use Barryvdh\DomPDF\Facade as PDF;
+use App\Models\Pembayaran;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
@@ -126,5 +127,12 @@ class PembayaranController extends Controller
         //fungsi eloquent untuk menghapus data
         Pembayaran::where('id_pembayaran', $id_pembayaran)->delete();return redirect()->route('pembayaran.index')
             -> with('success', 'Pembayaran Berhasil Dihapus');       
+    }
+    
+    public function cetak_laporan()
+    {
+        $pembayaran = Pembayaran::all();
+        $pdf = PDF::loadview('admin.pembayaran.laporan',['pembayaran' => $pembayaran]);
+        return $pdf->download('laporan.pdf');
     }
 }

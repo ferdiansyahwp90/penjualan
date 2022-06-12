@@ -18,14 +18,16 @@
                     </li>
                 </ul>
                 <form class="d-flex">
-                    <form class="d-flex0">
+                    {{-- <form class="d-flex0">
                         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-dark" type="submit">Search</button>
-                    </form>
+                    </form> --}}
                     <button class="btn btn-outline-dark" type="submit">
                         <i class="bi-cart-fill me-1"></i>
                         <a href="/cart" class="btn-outline-dark">Cart</a>
-                        <span class="badge bg-dark text-white ms-1 rounded-pill"></span>
+                        @auth
+                            <span class="badge bg-dark text-white ms-1 rounded-pill">{{ \App\Http\Controllers\HomeController::cartCount() }}</span>
+                        @endauth
                     </button>
                     @auth
                         <a href="/keluar" class="btn btn-outline-dark">LogOut</a>

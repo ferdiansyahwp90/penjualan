@@ -42,7 +42,7 @@
                                             <td>{{ $item->id_penjualan }}</td>
                                             <td>{{ $item->tanggal }}</td>
                                             <td>{{ $item->bayar }}</td>
-                                            <td>{{ $item->Keterangan }}</td>
+                                            <td>{{ $item->keterangan }}</td>
                                         </tr>
                                         @endforeach
                                     </tbody>

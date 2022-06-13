@@ -52,7 +52,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::middleware(['auth', 'isAdmin'])->group(function(){ 
     Route::prefix('admin')->group(function(){
         Route::resource('home', HomeController::class);
-        Route::put('/update', [HomeController::class, 'update_profile']);
         Route::resource('users', UserController::class);
         Route::resource('produk', ProdukController::class);
         Route::resource('penjualan', PenjualanController::class);

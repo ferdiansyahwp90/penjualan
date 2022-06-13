@@ -46,50 +46,42 @@
               <div class="col-lg-12 col-xlg-9 col-md-12">
                   <div class="card">
                       <div class="card-body">
-                          <form method="post" action="/admin/update" enctype="multipart/form-data" id="myForm">
-
-                          @csrf
-                          @method('PUT')
-
                               <div class="form-group mb-4">
                                   <label class="col-md-12 p-0">Username</label>
                                   <div class="col-md-12 border-bottom p-0">
                                       <input type="text" placeholder="{{ Auth::user()->username }}"
-                                          class="form-control p-0 border-0"> </div>
+                                          class="form-control p-0 border-0" readonly></div>
                               </div>
                               <div class="form-group mb-4">
                                   <label class="col-md-12 p-0">Name</label>
                                   <div class="col-md-12 border-bottom p-0">
                                       <input type="text" placeholder="{{ Auth::user()->name }}"
-                                          class="form-control p-0 border-0"> </div>
+                                          class="form-control p-0 border-0" readonly></div>
                               </div>
                               <div class="form-group mb-4">
                                   <label for="example-email" class="col-md-12 p-0">Email</label>
                                   <div class="col-md-12 border-bottom p-0">
                                       <input type="email" placeholder="{{ Auth::user()->email }}"
                                       class="form-control p-0 border-0" name="example-email"
-                                      id="example-email" readonly>
-                                    </div>
+                                      id="example-email" readonly></div>
                                 </div>
                                 <div class="form-group mb-4">
                                     <label class="col-md-12 p-0">Phone Number</label>
                                     <div class="col-md-12 border-bottom p-0">
                                         <input type="text" placeholder="{{ Auth::user()->no_hp }}"
-                                            class="form-control p-0 border-0"> </div>
+                                            class="form-control p-0 border-0" readonly></div>
                                 </div>
                               <div class="form-group mb-4">
                                   <label class="col-md-12 p-0">Password</label>
                                   <div class="col-md-12 border-bottom p-0">
-                                      <input type="password" value="password" class="form-control p-0 border-0">
-                                  </div>
+                                      <input type="password" value="password" class="form-control p-0 border-0" readonly></div>
                               </div>
                               
                               <div class="form-group mb-4">
                                   <div class="col-sm-12">
-                                      <button class="btn btn-success">Update Profile</button>
+                                      <a href="/admin/home/{{ Auth::user()->id }}/edit" class="btn btn-success">Update Profile</a>
                                   </div>
                               </div>
-                          </form>
                       </div>
                   </div>
               </div>

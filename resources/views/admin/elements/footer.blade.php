@@ -1,7 +1,7 @@
 <!-- ============================================================== -->
 <!-- footer -->
 <!-- ============================================================== -->
-<footer class="footer text-center"> 2021 © Ample Admin brought to you by <a
+<footer class="footer text-center"> Copyright &copy; Toko Barokah 2022 <a
     href="https://www.wrappixel.com/">wrappixel.com</a>
 </footer>
 <!-- ============================================================== -->

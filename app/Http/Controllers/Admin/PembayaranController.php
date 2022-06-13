@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Carbon\Carbon;
-use Barryvdh\DomPDF\Facade as PDF;
+use PDF;
 use App\Models\Pembayaran;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -132,7 +132,8 @@ class PembayaranController extends Controller
     public function cetak_laporan()
     {
         $pembayaran = Pembayaran::all();
-        $pdf = PDF::loadview('admin.pembayaran.laporan',['pembayaran' => $pembayaran]);
-        return $pdf->download('laporan.pdf');
+        // return view('admin.pembayaran.laporan',['pembayaran' => $pembayaran]);
+        $pdf = PDF::loadview('admin.pembayaran.laporan', ['pembayaran' => $pembayaran]);
+        return $pdf->stream();
     }
 }

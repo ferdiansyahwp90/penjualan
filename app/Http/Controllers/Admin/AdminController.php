@@ -42,15 +42,13 @@ class AdminController extends Controller
     {
         //melakukan validasi data
         $request->validate([
-            'id' => 'required',
-            'nama_admin' => 'required',
+            'username' => 'required',
+            'name' => 'required',
             'no_hp' => 'required',
-            'alamat' => 'required',
-            'email' => 'required',
         ]);
         //fungsi eloquent untuk menambah data
         User::create($request->all());//jika data berhasil ditambahkan, akan kembali ke halaman utama
-        return redirect()->route('admin.index')
+        return redirect()->route('admin.home.index')
             ->with('success', 'Admin Berhasil Ditambahkan');
     }
 
@@ -63,7 +61,7 @@ class AdminController extends Controller
     public function show($id)
     {
         $admin = User::where('id', $id)->first();
-        return view('admin.detail', compact('admin'));
+        // return view('admin.home.detail', compact('admin'));
     }
 
     /**
@@ -74,8 +72,8 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        $Admin = DB::table('admin')->where('id', $id)->first();
-        return view('admin.edit', compact('admin'));
+        $admin = DB::table('users')->where('id', $id)->first();
+        return view('admin.home.edit', compact('admin'));
     }
 
     /**
@@ -88,20 +86,20 @@ class AdminController extends Controller
     public function update(Request $request, $id)
     {
         //melakukan validasi data
-            $request->validate([
-                'nama_admin' => 'required',
+        $request->validate([
+                'username' => 'required',
+                'name' => 'required',
                 'no_hp' => 'required',
-                'email' => 'required',
             ]);
         //fungsi eloquent untuk mengupdate data inputan kita
             User::where('id', $id)
-                ->update([
-                    'nama_admin' =>$request->nama_admin,
+            ->update([
+                    'username' =>$request->username,
+                    'name' =>$request->name,
                     'no_hp' =>$request->no_hp,
-                    'email' =>$request->email,
             ]);
         //jika data berhasil diupdate, akan kembali ke halaman utama
-            return redirect()->route('admin.index')
+            return redirect()->route('admin.home.index')
                 ->with('success', 'Admin Berhasil Diupdate');
     }
 
@@ -117,29 +115,5 @@ class AdminController extends Controller
         User::where('id', $id)->delete();
         return redirect()->route('admin.index')
         -> with('success', 'Admin Berhasil Dihapus');
-    }
-
-    public function update_profile(Request $request, $id)
-    {
-        //melakukan validasi data
-            $request->validate([
-                'username' => 'required',
-                'name' => 'required',
-                // 'email' => 'required',
-                'no_hp' => 'required',
-                'password' => 'required',
-            ]);
-        //fungsi eloquent untuk mengupdate data inputan kita
-            User::where('id', $id)
-                ->update([
-                    'username' =>$request->username,
-                    'name' =>$request->name,
-                    'email' =>$request->email,
-                    'no_hp' =>$request->no_hp,
-                    'password' =>$request->password,
-            ]);
-        //jika data berhasil diupdate, akan kembali ke halaman utama
-            return redirect()->to('/admin/home')
-                ->with('success', 'Profile Berhasil Diupdate');
     }
 }

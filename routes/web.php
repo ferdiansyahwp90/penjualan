@@ -49,8 +49,8 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::middleware(['auth', 'isAdmin'])->group(function(){ 
-    Route::prefix('admin')->group(function(){
+Route::middleware(['auth', 'isAdmin'])->group(function () {
+    Route::prefix('admin')->group(function () {
         Route::resource('home', HomeController::class);
         Route::resource('users', UserController::class);
         Route::resource('produk', ProdukController::class);
@@ -60,17 +60,16 @@ Route::middleware(['auth', 'isAdmin'])->group(function(){
     });
 });
 
-Route::middleware('auth')->group(function(){
+Route::middleware('auth')->group(function () {
     Route::get('/user', [PelangganHomeController::class, 'index']);
     Route::get('/cart', [PelangganKeranjangController::class, 'index']);
     Route::post('/cart/store', [PelangganKeranjangController::class, 'store']);
     Route::get('/pembayaran', [PelangganPembayaranController::class, 'index']);
     Route::get('/order/{id}', [PelangganOrderController::class, 'store']);
     Route::get('/order', [PelangganOrderController::class, 'index']);
-
 });
 
-Route::get('/keluar', function(){
+Route::get('/keluar', function () {
     Auth::logout();
 
     request()->session()->invalidate();
@@ -80,6 +79,6 @@ Route::get('/keluar', function(){
     return redirect('/');
 });
 
-Route::get('/pelanggan', function(){
+Route::get('/pelanggan', function () {
     return view([PelangganController::class, 'index']);
 });

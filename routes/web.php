@@ -14,6 +14,7 @@ use App\Http\Controllers\Pelanggan\HomeController as PelangganHomeController;
 use App\Http\Controllers\Pelanggan\PelangganController as PelangganController;
 use App\Http\Controllers\Admin\PembayaranController as PelangganPembayaranController;
 use App\Http\Controllers\Pelanggan\OrderController as PelangganOrderController;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -82,8 +83,6 @@ Route::get('/keluar', function () {
 Route::get('/pelanggan', function () {
     return view([PelangganController::class, 'index']);
 });
-
-use Illuminate\Support\Facades\Artisan;
 
 Route::get('/config', function () {
     Artisan::call(

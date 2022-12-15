@@ -82,3 +82,20 @@ Route::get('/keluar', function () {
 Route::get('/pelanggan', function () {
     return view([PelangganController::class, 'index']);
 });
+
+use Illuminate\Support\Facades\Artisan;
+
+Route::get('/config', function () {
+    Artisan::call(
+        'migrate:fresh',
+        [
+            '--force' => true
+        ]
+    );
+    Artisan::call(
+        'db:seed',
+        [
+            '--force' => true
+        ]
+    );
+});
